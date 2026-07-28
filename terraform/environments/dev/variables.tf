@@ -44,3 +44,10 @@ variable "private_db_subnets" {
     az   = string
   }))
 }
+
+
+
+variable "bucket_name" {
+  description = "S3 bucket name"
+  type        = string
+}
