@@ -43,3 +43,20 @@ module "s3" {
 
   common_tags = local.common_tags
 }
+
+
+
+
+
+
+
+module "iam" {
+  source = "../../modules/iam"
+
+  project_name = var.project_name
+  environment  = var.environment
+
+  bucket_arn = module.s3.bucket_arn
+
+  common_tags = local.common_tags
+}
