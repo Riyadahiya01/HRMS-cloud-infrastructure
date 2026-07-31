@@ -97,7 +97,21 @@ resource "aws_vpc_security_group_ingress_rule" "ec2_http" {
 }
 
 
+########################################
+# Internet -> EC2 (HTTP)
+########################################
 
+resource "aws_vpc_security_group_ingress_rule" "ec2_http_public" {
+  security_group_id = aws_security_group.ec2.id
+
+  ip_protocol = "tcp"
+  from_port   = 80
+  to_port     = 80
+
+  cidr_ipv4 = "0.0.0.0/0"
+
+  description = "Temporary HTTP access for Phase 8"
+}
 
 
 
