@@ -60,3 +60,25 @@ module "iam" {
 
   common_tags = local.common_tags
 }
+
+
+
+
+
+module "rds" {
+  source = "../../modules/rds"
+
+  project_name = var.project_name
+  environment  = var.environment
+
+  db_name           = var.db_name
+  db_username       = var.db_username
+  db_password       = var.db_password
+  db_instance_class = var.db_instance_class
+  allocated_storage = var.allocated_storage
+
+  private_db_subnet_ids = module.vpc.private_db_subnet_ids
+  rds_security_group_id = module.security.rds_security_group_id
+
+  common_tags = local.common_tags
+}
