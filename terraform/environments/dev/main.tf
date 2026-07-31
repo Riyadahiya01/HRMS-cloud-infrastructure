@@ -82,3 +82,28 @@ module "rds" {
 
   common_tags = local.common_tags
 }
+
+
+
+
+#################################################
+# EC2 Module
+#################################################
+
+module "ec2" {
+  source = "../../modules/ec2"
+
+  project_name = var.project_name
+  environment  = var.environment
+
+  instance_type    = var.instance_type
+  root_volume_size = var.root_volume_size
+
+  public_subnet_ids = module.vpc.public_subnet_ids
+
+  ec2_security_group_id = module.security.ec2_security_group_id
+
+  instance_profile_name = module.iam.instance_profile_name
+
+  common_tags = local.common_tags
+}

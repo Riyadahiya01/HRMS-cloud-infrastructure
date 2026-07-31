@@ -47,10 +47,14 @@ variable "private_db_subnets" {
 
 
 
+
+
 variable "bucket_name" {
   description = "S3 bucket name"
   type        = string
 }
+
+
 
 
 
@@ -74,4 +78,21 @@ variable "db_instance_class" {
 
 variable "allocated_storage" {
   type = number
+}
+
+
+
+
+#################################################
+# EC2 Variables
+#################################################
+
+variable "instance_type" {
+  description = "EC2 instance type"
+  type        = string
+}
+
+variable "root_volume_size" {
+  description = "Root EBS volume size"
+  type        = number
 }
