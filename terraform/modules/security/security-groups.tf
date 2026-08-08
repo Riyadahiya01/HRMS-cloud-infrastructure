@@ -110,8 +110,9 @@ resource "aws_vpc_security_group_ingress_rule" "ec2_http_public" {
 
   cidr_ipv4 = "0.0.0.0/0"
 
-  description = "Temporary HTTP access for Phase 8"
+  description = "Temporary HTTP access"
 }
+
 
 
 
@@ -129,4 +130,57 @@ resource "aws_vpc_security_group_ingress_rule" "rds_postgres" {
   to_port     = 5432
 
   description = "Allow PostgreSQL traffic from EC2"
+}
+
+
+
+########################################
+# EC2 -> Internet (All Outbound)
+########################################
+
+resource "aws_vpc_security_group_egress_rule" "ec2_all_outbound" {
+
+  security_group_id = aws_security_group.ec2.id
+
+  ip_protocol = "-1"
+
+  cidr_ipv4 = "0.0.0.0/0"
+
+  description = "Allow all outbound traffic"
+}
+
+
+
+########################################
+# RDS -> Outbound
+########################################
+
+resource "aws_vpc_security_group_egress_rule" "rds_all_outbound" {
+
+  security_group_id = aws_security_group.rds.id
+
+  ip_protocol = "-1"
+
+  cidr_ipv4 = "0.0.0.0/0"
+
+  description = "Allow outbound traffic"
+}
+
+
+
+
+
+########################################
+# ALB -> Outbound
+########################################
+
+resource "aws_vpc_security_group_egress_rule" "alb_all_outbound" {
+
+  security_group_id = aws_security_group.alb.id
+
+  ip_protocol = "-1"
+
+  cidr_ipv4 = "0.0.0.0/0"
+
+  description = "Allow outbound traffic"
 }
