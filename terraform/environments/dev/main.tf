@@ -107,3 +107,22 @@ module "ec2" {
 
   common_tags = local.common_tags
 }
+
+
+
+
+
+#################################################
+# Monitoring Module
+#################################################
+
+module "monitoring" {
+  source = "../../modules/monitoring"
+
+  project_name = var.project_name
+  environment  = var.environment
+
+  instance_id = module.ec2.instance_id
+
+  common_tags = local.common_tags
+}

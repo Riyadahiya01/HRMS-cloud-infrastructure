@@ -86,4 +86,14 @@ EOF
       Name = "${var.project_name}-${var.environment}-app-server"
     }
   )
+
+ #################################################
+  # Lifecycle
+  #################################################
+
+  lifecycle {
+    ignore_changes = [
+      ami
+    ]
+  }
 }
