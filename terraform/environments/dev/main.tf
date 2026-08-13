@@ -51,7 +51,7 @@ module "s3" {
 
 
 module "iam" {
-  source = "../../modules/iam"
+  source = "../../modules/IAM"
 
   project_name = var.project_name
   environment  = var.environment
@@ -66,7 +66,7 @@ module "iam" {
 
 
 module "rds" {
-  source = "../../modules/rds"
+  source = "../../modules/RDS"
 
   project_name = var.project_name
   environment  = var.environment
@@ -91,7 +91,7 @@ module "rds" {
 #################################################
 
 module "ec2" {
-  source = "../../modules/ec2"
+  source = "../../modules/EC2"
 
   project_name = var.project_name
   environment  = var.environment
