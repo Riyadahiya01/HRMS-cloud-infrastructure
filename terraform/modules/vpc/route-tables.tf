@@ -1,6 +1,10 @@
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.this.id
 
+  lifecycle {
+    prevent_destroy = true
+  }
+
   tags = merge(
     var.common_tags,
     {
@@ -38,6 +42,10 @@ resource "aws_route_table_association" "public" {
 resource "aws_route_table" "private_app" {
   vpc_id = aws_vpc.this.id
 
+  lifecycle {
+    prevent_destroy = true
+  }
+
   tags = merge(
     var.common_tags,
     {
@@ -52,6 +60,10 @@ resource "aws_route_table" "private_app" {
 
 resource "aws_route_table" "private_db" {
   vpc_id = aws_vpc.this.id
+
+  lifecycle {
+    prevent_destroy = true
+  }
 
   tags = merge(
     var.common_tags,
