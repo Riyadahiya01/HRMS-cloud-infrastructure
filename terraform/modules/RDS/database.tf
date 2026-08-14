@@ -41,8 +41,8 @@ resource "aws_db_instance" "postgres" {
   performance_insights_enabled = false
 
   # Protection
-  deletion_protection = false
-  skip_final_snapshot = true
+  deletion_protection = true
+  skip_final_snapshot = false
 
   
 maintenance_window = "sun:04:00-sun:05:00"
