@@ -6,6 +6,10 @@ resource "aws_subnet" "public" {
   availability_zone       = each.value.az
   map_public_ip_on_launch = true
 
+  lifecycle {
+    prevent_destroy = true
+  }
+
   tags = merge(
     var.common_tags,
     {
@@ -27,6 +31,10 @@ resource "aws_subnet" "private_app" {
   cidr_block        = each.value.cidr
   availability_zone = each.value.az
 
+  lifecycle {
+    prevent_destroy = true
+  }
+
   tags = merge(
     var.common_tags,
     {
@@ -47,6 +55,10 @@ resource "aws_subnet" "private_db" {
   cidr_block        = each.value.cidr
   availability_zone = each.value.az
 
+  lifecycle {
+    prevent_destroy = true
+  }
+  
   tags = merge(
     var.common_tags,
     {
