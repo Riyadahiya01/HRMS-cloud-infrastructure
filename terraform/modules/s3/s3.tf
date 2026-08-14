@@ -9,6 +9,10 @@ locals {
 resource "aws_s3_bucket" "employee_documents" {
   bucket = var.bucket_name
 
+ lifecycle {
+    prevent_destroy = true
+  }
+  
   tags = merge(
     var.common_tags,
     {
