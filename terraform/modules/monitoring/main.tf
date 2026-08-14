@@ -23,6 +23,10 @@ resource "aws_cloudwatch_metric_alarm" "high_cpu" {
     InstanceId = var.instance_id
   }
 
+  lifecycle {
+    prevent_destroy = true
+  }
+
   tags = merge(
     var.common_tags,
     {
@@ -53,6 +57,10 @@ resource "aws_cloudwatch_metric_alarm" "status_check_failed" {
     InstanceId = var.instance_id
   }
 
+  lifecycle {
+    prevent_destroy = true
+  }
+  
   tags = merge(
     var.common_tags,
     {
