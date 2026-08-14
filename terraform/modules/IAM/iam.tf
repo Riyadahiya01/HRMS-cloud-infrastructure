@@ -21,6 +21,10 @@ resource "aws_iam_role" "ec2_role" {
     ]
   })
 
+lifecycle {
+  prevent_destroy = true
+}
+
   tags = merge(
     var.common_tags,
     {
@@ -70,6 +74,10 @@ resource "aws_iam_policy" "s3_access" {
     ]
   })
 
+lifecycle {
+  prevent_destroy = true
+}
+
   tags = merge(
     var.common_tags,
     {
@@ -110,6 +118,10 @@ resource "aws_iam_role_policy_attachment" "ssm_core" {
 resource "aws_iam_instance_profile" "ec2_profile" {
   name = "${var.project_name}-${var.environment}-ec2-profile"
   role = aws_iam_role.ec2_role.name
+
+lifecycle {
+  prevent_destroy = true
+}
 
   tags = merge(
     var.common_tags,
