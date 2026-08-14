@@ -11,6 +11,10 @@ resource "aws_security_group" "alb" {
   description = "Security Group for Application Load Balancer"
   vpc_id      = var.vpc_id
 
+lifecycle {
+  prevent_destroy = true
+}
+
   tags = merge(
     var.common_tags,
     {
@@ -28,6 +32,10 @@ resource "aws_security_group" "ec2" {
   description = "Security Group for EC2 Instance"
   vpc_id      = var.vpc_id
 
+lifecycle {
+  prevent_destroy = true
+}
+
   tags = merge(
     var.common_tags,
     {
@@ -44,6 +52,10 @@ resource "aws_security_group" "rds" {
   name        = "${local.name_prefix}-rds-sg"
   description = "Security Group for PostgreSQL Database"
   vpc_id      = var.vpc_id
+
+lifecycle {
+  prevent_destroy = true
+}
 
   tags = merge(
     var.common_tags,
